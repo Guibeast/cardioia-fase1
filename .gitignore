@@ -1,0 +1,14 @@
+# Contexto interno de desenvolvimento - NAO publicar
+CLAUDE.md
+HISTORICO.md
+_interno/
+.claude/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# Windows / OneDrive
+desktop.ini
+Thumbs.db

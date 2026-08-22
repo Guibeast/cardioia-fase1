@@ -1,0 +1,29 @@
+AUDITORIA DE PROVENIENCIA - UCI Heart Disease (ID 45)
+Fonte: https://archive.ics.uci.edu/static/public/45/heart+disease.zip
+Data de execucao: 2026-08-22
+
+FUNIL DE COMPLETUDE POR ORIGEM
+
+  Cleveland (EUA)         303 registros |  297 sem '?' (98.0%)
+  Hungarian (Hungria)     294 registros |    1 sem '?' (0.3%)
+  Switzerland (Suica)     123 registros |    0 sem '?' (0.0%)
+  VA Long Beach (EUA)     200 registros |    1 sem '?' (0.5%)
+
+  TOTAL                   920 registros |  299 sem '?' (32.5%)
+
+AUSENCIAS ('?') POR VARIAVEL, TODAS AS ORIGENS
+
+  trestbps       59 ausentes (6.4%)
+  chol           30 ausentes (3.3%)
+  fbs            90 ausentes (9.8%)
+  restecg         2 ausentes (0.2%)
+  thalach        55 ausentes (6.0%)
+  exang          55 ausentes (6.0%)
+  oldpeak        62 ausentes (6.7%)
+  slope         309 ausentes (33.6%)
+  ca            611 ausentes (66.4%)
+  thal          486 ausentes (52.8%)
+
+OBSERVACAO CRITICA
+  Switzerland registra colesterol = 0 em 123/123 pacientes. Zero fisiologicamente impossivel:
+  e ausencia codificada como zero, nao medicao. Tratar como dado faltante.
