@@ -38,15 +38,16 @@ Toda a curadoria foi conduzida sob os princípios de Governança de Dados e miti
 - **Repositório GitHub:** [Acessar Repositório](https://github.com/Guibeast/cardioia-fase1)
 - **Conjunto completo dos dados:** [Acessar no Google Drive](https://drive.google.com/drive/folders/1bL0FgLcgQvp6SRSrujSTPqes1hUS-MCY?usp=sharing)
 
-O link do Google Drive abre a pasta pública `CardioIA-Fase1-Dados`, que contém o arquivo `cardioia-fase1-dados.zip` (24 MB). Dentro dele, as três camadas estão na mesma estrutura deste repositório (`data/`, `docs/`, `assets/`), 25 MB descompactados. A pasta está aberta para qualquer pessoa com o link, sem login.
+O link do Google Drive abre a pasta pública `CardioIA-Fase1-Dados`, que contém o arquivo `cardioia-fase1-dados.zip` (29,8 MB). Dentro dele, as camadas estão na mesma estrutura deste repositório (`data/`, `docs/`, `assets/`), 30,5 MB descompactados. A pasta está aberta para qualquer pessoa com o link, sem login.
 
-Por redundância, **as três camadas também estão versionadas aqui no próprio repositório**, para o caso de indisponibilidade do serviço de nuvem:
+Por redundância, **todas as camadas também estão versionadas aqui no próprio repositório**, para o caso de indisponibilidade do serviço de nuvem:
 
 | Base | No Google Drive (dentro do `.zip`) | Neste repositório | Volume |
 |---|---|---|---|
 | Dataset numérico (CSV) | `data/cardioia_dataset.csv` | [`data/cardioia_dataset.csv`](data/cardioia_dataset.csv) | 918 linhas × 18 colunas |
-| Corpus textual (2 `.txt`) | `docs/` | [`docs/`](docs/) | 23.627 caracteres |
-| Corpus visual (ECG) | `assets/ecg/` | [`assets/ecg/`](assets/ecg/) | 523 imagens, 21,0 MB |
+| Corpus textual (4 `.txt`) | `docs/` | [`docs/`](docs/) | 27.924 caracteres |
+| Corpus visual (ECG rotulado) | `assets/ecg/` | [`assets/ecg/`](assets/ecg/) | 523 imagens, 21,0 MB |
+| Camada de sinal bruto (ECG) | `assets/ecg_sinais/` | [`assets/ecg_sinais/`](assets/ecg_sinais/) | 108 tiras, 6,9 MB |
 | Amostras visuais | `assets/amostras/` | [`assets/amostras/`](assets/amostras/) | 8 recortes e 2 exames completos |
 | Proveniência e licenças | `docs/FONTES.md` | [`docs/FONTES.md`](docs/FONTES.md) | — |
 
@@ -54,11 +55,11 @@ Por redundância, **as três camadas também estão versionadas aqui no próprio
 
 Dentre os arquivos e pastas presentes na raiz do projeto, definem-se:
 
-- <b>assets</b>: Contém os arquivos não-estruturados do projeto — a logomarca da FIAP utilizada neste README (`logo-fiap.png`), o corpus visual completo em `ecg/`, organizado em `treino`/`teste` × `normal`/`infarto`, e `amostras/` com os exemplos representativos exibidos na Parte 3, incluindo `alta_resolucao/` com dois exames completos para contraste.
+- <b>assets</b>: Contém os arquivos não-estruturados do projeto — a logomarca da FIAP utilizada neste README (`logo-fiap.png`), o corpus visual completo em `ecg/`, organizado em `treino`/`teste` × `normal`/`infarto`, `ecg_sinais/` com a camada complementar de 108 tiras de ECG renderizadas a partir de sinal bruto do PhysioNet (ver Parte 3), e `amostras/` com os exemplos representativos exibidos na Parte 3, incluindo `alta_resolucao/` com dois exames completos para contraste.
 
-- <b>data</b>: Armazena a camada numérica — `cardioia_dataset.csv` (dataset final entregue, 918 × 18), `heart_kaggle.csv` (base clínica real de origem, preservada para conferência), `auditoria_uci.txt` (funil de completude da base original do UCI) e `inventario_imagens.csv` (medição individual das 659 imagens do corpus visual). Contém também os dois scripts de reprodução: `gerar_dataset.py`, que monta a base e a camada IoT simulada com semente fixa, e `baixar_imagens.py`, que baixa, mede e inventaria as imagens.
+- <b>data</b>: Armazena a camada numérica — `cardioia_dataset.csv` (dataset final entregue, 918 × 18), `heart_kaggle.csv` (base clínica real de origem, preservada para conferência), `auditoria_uci.txt` (funil de completude da base original do UCI) e `inventario_imagens.csv` (medição individual das 659 imagens do corpus visual). Contém também os três scripts de reprodução: `gerar_dataset.py`, que monta a base e a camada IoT simulada com semente fixa, `baixar_imagens.py`, que baixa, mede e inventaria as imagens, e `gerar_tiras_sinais.py`, que renderiza a camada de sinal bruto de `assets/ecg_sinais/`.
 
-- <b>docs</b>: Contém o corpus textual da Parte 2 — `texto1-tecnico.txt` e `texto2-leigo.txt` —, o arquivo `FONTES.md` com título, autoria, DOI, licença, URL e data de acesso de cada fonte, e o arquivo `requirements.txt` com as dependências do projeto, conforme o padrão adotado nas entregas anteriores.
+- <b>docs</b>: Contém o corpus textual da Parte 2 — `texto1-tecnico.txt`, `texto2-leigo.txt`, `texto3-opas-doencas-cardiovasculares.txt` e `texto4-ms-hipertensao.txt` —, o arquivo `FONTES.md` com título, autoria, DOI, licença, URL e data de acesso de cada fonte, e o arquivo `requirements.txt` com as dependências do projeto, conforme o padrão adotado nas entregas anteriores.
 
 - <b>README.md</b>: Arquivo que serve como guia e explicação geral sobre o projeto (o mesmo que você está lendo agora).
 
@@ -66,12 +67,12 @@ Dentre os arquivos e pastas presentes na raiz do projeto, definem-se:
 
 ## 🔧 Como executar o código
 
-Os dois scripts desta fase são de **reprodução**: os arquivos que eles geram já estão versionados no repositório. Executá-los serve para conferir que cada número deste README sai dos dados, e não de estimativa.
+Os três scripts desta fase são de **reprodução**: os arquivos que eles geram já estão versionados no repositório. Executá-los serve para conferir que cada número deste README sai dos dados, e não de estimativa.
 
 1. **Pré-requisitos**:
    * Python 3.11 ou superior.
    * pip.
-   * Conexão com a internet (os dois scripts baixam das fontes originais).
+   * Conexão com a internet (os scripts baixam das fontes originais).
 
 2. **Instalação das dependências**, a partir da raiz do projeto:
 
@@ -94,6 +95,16 @@ python data/baixar_imagens.py
 ```
 
 Gera `assets/ecg/` (523 imagens 227×227 RGB), `assets/amostras/` e `data/inventario_imagens.csv`. Reexecutar não rebaixa o que já existe. Ambos os scripts terminam em `assert` — se qualquer mínimo do enunciado deixar de bater, falham em vez de gravar dado errado.
+
+5. **Camada de sinal bruto** *(opcional)* — renderiza as 108 tiras de `assets/ecg_sinais/` a partir dos registros reais do PhysioNet distribuídos com o pacote `wfdb-python`:
+
+```bash
+git clone --depth 1 https://github.com/MIT-LCP/wfdb-python.git
+cd wfdb-python/sample-data
+python ../../data/gerar_tiras_sinais.py
+```
+
+O script lê os sinais brutos (MIT-BIH 100, PTB s0010_re, a103l e v102s), recorta janelas de 10 segundos e as desenha sobre grade de papel de ECG, salvando os `.png` em `assets/ecg_sinais/`.
 
 
 ## 🩺 Parte 1 — Dados Numéricos (IoT / ML)
@@ -161,14 +172,18 @@ Em produção, `spo2_pct`, `MaxHR` e `hrv_sdnn_ms` não são campos de cadastro:
 |---|---|---|---|---|
 | [`docs/texto1-tecnico.txt`](docs/texto1-tecnico.txt) | Técnico-científico | *Arq. Bras. Cardiol.* 122(4):e20240740, abr/2025 — SciELO, CC-BY, DOI 10.36660/abc.20240740 | **20.503 caracteres**, 3.136 palavras, 75 parágrafos | 20/08/2026 |
 | [`docs/texto2-leigo.txt`](docs/texto2-leigo.txt) | Divulgação ao público | "Infarto" — Ministério da Saúde, portal gov.br, Saúde de A a Z | **3.124 caracteres**, 494 palavras, 27 parágrafos | 20/08/2026 |
+| [`docs/texto3-opas-doencas-cardiovasculares.txt`](docs/texto3-opas-doencas-cardiovasculares.txt) | Saúde pública internacional | "Doenças cardiovasculares" — OPAS/OMS, tópicos de saúde | **2.378 caracteres**, 329 palavras | 24/08/2026 |
+| [`docs/texto4-ms-hipertensao.txt`](docs/texto4-ms-hipertensao.txt) | Divulgação ao público | "Hipertensão" — Ministério da Saúde, portal gov.br, Saúde de A a Z | **1.919 caracteres**, 280 palavras | 24/08/2026 |
 
-Os dois arquivos estão na subpasta [`docs/`](docs/) deste repositório e também no [conjunto completo hospedado em nuvem pública](https://drive.google.com/drive/folders/1bL0FgLcgQvp6SRSrujSTPqes1hUS-MCY?usp=sharing).
+Os quatro arquivos estão na subpasta [`docs/`](docs/) deste repositório e também no [conjunto completo hospedado em nuvem pública](https://drive.google.com/drive/folders/1bL0FgLcgQvp6SRSrujSTPqes1hUS-MCY?usp=sharing).
 
-Os dois textos tratam da **mesma doença** — isquemia miocárdica — para **públicos opostos**. O contraste é o objeto de estudo, não efeito colateral da coleta: o mesmo conceito clínico aparece como *"disfunção sistólica do ventrículo esquerdo"* em um e como *"o coração fica fraco"* no outro. Um corpus de registro único treinaria um modelo incapaz de entender o paciente que escreve *"meu peito aperta quando subo escada"* — que é precisamente quem o chatbot de triagem do CardioIA vai atender.
+Os textos 3 e 4 ampliam o corpus em dois eixos que os dois primeiros não cobrem: **epidemiologia global** (OPAS: 17,9 milhões de mortes/ano, 31% dos óbitos mundiais, fatores de risco comportamentais, sintomas de infarto e AVC) e **doença crônica de base** (hipertensão: o principal fator de risco modificável, com 388 mortes/dia no Brasil). Para o módulo de NLP, isso adiciona os eixos temáticos de *prevenção* e *condição crônica* à classificação de tópicos, além de mais vocabulário leigo-institucional. **Nota de proveniência:** diferentemente dos textos 1 e 2 (recortes literais da fonte), os textos 3 e 4 são **extratos estruturados** do conteúdo das páginas oficiais — o conteúdo factual e as citações numéricas são os das fontes, reorganizados em seções, com URL e data de acesso declaradas no cabeçalho de cada arquivo.
+
+Os textos 1 e 2 tratam da **mesma doença** — isquemia miocárdica — para **públicos opostos**. O contraste é o objeto de estudo, não efeito colateral da coleta: o mesmo conceito clínico aparece como *"disfunção sistólica do ventrículo esquerdo"* em um e como *"o coração fica fraco"* no outro. Um corpus de registro único treinaria um modelo incapaz de entender o paciente que escreve *"meu peito aperta quando subo escada"* — que é precisamente quem o chatbot de triagem do CardioIA vai atender.
 
 O texto técnico não foi escolhido apenas pelo registro: é a **interseção exata do projeto** — IA aplicada a ECG, em coorte brasileira (ELSA-Brasil, 2.567 indivíduos), publicada em revista nacional indexada. Traz o vocabulário métrico que o modelo precisa reconhecer (sensibilidade, especificidade, VPP, VPN, ASC-ROC, razão de verossimilhança) e documenta um caso real de **classe rara** (FEVE abaixo de 40% em 1,13% da amostra), o mesmo problema estatístico que a base numérica enfrenta.
 
-Ambos foram baixados por HTTP direto da fonte primária e extraídos com `html.parser` da biblioteca padrão. **Nenhuma palavra foi reescrita, resumida ou traduzida** — os arquivos são recortes literais, em UTF-8 puro, sem marcação. O que foi removido (abstract em inglês, lista de referências, rodapé institucional, repetições de carrossel) está declarado item a item em [`docs/FONTES.md`](docs/FONTES.md).
+Os textos 1 e 2 foram baixados por HTTP direto da fonte primária e extraídos com `html.parser` da biblioteca padrão. **Nenhuma palavra foi reescrita, resumida ou traduzida** — os arquivos são recortes literais, em UTF-8 puro, sem marcação. O que foi removido (abstract em inglês, lista de referências, rodapé institucional, repetições de carrossel) está declarado item a item em [`docs/FONTES.md`](docs/FONTES.md).
 
 ### 3 técnicas de PLN previstas e o porquê clínico
 
@@ -245,6 +260,21 @@ Para tornar visível o que a resolução de entrega custa, os dois exames abaixo
 
 Nos exames em alta resolução as 12 derivações estão rotuladas (I, II, III, aVR, aVL, aVF, V1 a V6) sobre grade calibrada. **A 227×227 os rótulos ficam ilegíveis e a grade não é mensurável.** Consequência honesta: nesta base **não há morfometria** — supradesnivelamento de ST em milímetros, intervalo QT — nem **localização do território do infarto** (anterior, inferior, lateral). Restam textura e forma global da onda, que sustentam classificação, não medida. Duas amostras em alta resolução foram mantidas em [`assets/amostras/alta_resolucao/`](assets/amostras/alta_resolucao/) exatamente para tornar essa perda visível a quem avalia.
 
+### Camada complementar de sinal bruto (`assets/ecg_sinais/`)
+
+Para mitigar em parte essa limitação, a entrega inclui uma **segunda natureza de dado visual**: 108 tiras de ECG em [`assets/ecg_sinais/`](assets/ecg_sinais/) renderizadas **a partir do sinal bruto** — a série numérica do traçado, não uma foto digitalizada. Os sinais são registros reais de bases públicas do **PhysioNet** (MIT-BIH Arrhythmia Database, registro 100; PTB Diagnostic ECG Database, s0010_re, 12 derivações a 1000 Hz; Challenge 2015 a103l e v102s, monitorização de UTI a 250 Hz), obtidos por meio do pacote oficial `wfdb-python` do MIT-LCP, licença aberta (ODC-BY). O script [`data/gerar_tiras_sinais.py`](data/gerar_tiras_sinais.py) lê cada registro, recorta janelas de 10 segundos e as desenha sobre uma grade temporal calibrada nas divisões clássicas do papel de ECG (40 ms na linha fina, 200 ms na grossa), com o eixo horizontal em segundos e o vertical em milivolts, lido diretamente nos ticks do eixo — o pipeline **sinal → imagem** fica inteiro no repositório, reprodutível. As linhas horizontais são apenas referência visual: a amplitude se mede pela escala do eixo Y, não pela contagem de quadrículas.
+
+O papel desta camada é complementar, e as duas se cobrem mutuamente:
+
+| | Corpus rotulado (`assets/ecg/`) | Camada de sinal (`assets/ecg_sinais/`) |
+|---|---|---|
+| Natureza | Foto digitalizada 227×227 | Renderização calibrada do sinal numérico |
+| Rótulo | normal / infarto ✅ | sem rótulo de patologia ❌ |
+| Morfometria | impossível (grade ilegível) | possível — tempo calibrado na grade e amplitude na escala em mV do eixo |
+| Uso previsto | treinar CNN de classificação | processamento de sinal: detecção de QRS, medição de intervalos (PR, QT, ST), filtragem digital, e validação das técnicas de segmentação/limiarização em imagem com *ground truth* conhecido |
+
+**Limitação declarada desta camada:** os 108 recortes vêm de apenas 4 registros (poucos pacientes) e não têm rótulo diagnóstico — servem ao desenvolvimento de algoritmos de sinal e à validação de pipelines, não ao treinamento de classificadores. As duas limitações são simétricas, e é exatamente por isso que as duas camadas coexistem.
+
 ### Relevância clínica
 
 O ECG é o exame cardiológico de maior volume e menor custo, e sua leitura depende da disponibilidade de especialista. Um classificador auxiliar **não substitui o cardiologista: reordena a fila**. Em triagem de emergência, adiantar em minutos o reconhecimento de um supradesnivelamento de ST é a diferença entre músculo cardíaco preservado e perdido. Por isso o CardioIA trata a Parte 3 como módulo de **priorização**, com laudo sempre validado por humano.
@@ -259,7 +289,7 @@ Esta fase corresponde às etapas de **planejamento** e **aquisição/ingestão**
 
 | V | Situação medida nesta fase |
 |---|---|
-| Volume | 918 registros, 523 imagens, 2 documentos (23.627 caracteres) — escala de prototipagem, não de produção |
+| Volume | 918 registros, 523 imagens rotuladas + 108 tiras de sinal, 4 documentos (27.924 caracteres) — escala de prototipagem, não de produção |
 | Variedade | Estruturado (CSV), não estruturado textual e não estruturado visual, cada um alimentando um módulo distinto |
 | Velocidade | Lote nesta fase; a camada IoT já define o esquema do regime de *streaming* das próximas |
 | **Veracidade** | Base clínica de fonte pública auditada; camada simulada **explicitamente sinalizada** em todo lugar, nunca apresentada como real |
@@ -311,23 +341,38 @@ A distribuição do zero por sexo é 161 homens e 11 mulheres — o defeito não
 - **Obermeyer et al. (2019), *Science*** — um algoritmo de gestão de cuidado usado em larga escala nos EUA adotou **gasto médico prévio como proxy de necessidade de saúde**. Como pacientes negros historicamente recebiam menos tratamento, gastavam menos, e o modelo concluiu que precisavam de menos cuidado: cerca de **17%** dos que deveriam ser priorizados ficaram de fora. O erro não estava no código, estava na **escolha da variável**. Aplicação direta aqui: todas as variáveis desta base são **fisiológicas ou de exame** (pressão, colesterol, ST, HRV) e **nenhum proxy socioeconômico ou de utilização de serviço entra como preditor**. O item 3 acima é a versão local desse mesmo erro, encontrada porque foi procurada.
 - **Amazon (viés detectado em 2015, revelado pela Reuters em 2018)** — dez anos de currículos majoritariamente masculinos ensinaram o modelo de recrutamento a penalizar o termo "feminino". A lição é que **um histórico desequilibrado vira regra de decisão**. É exatamente a situação do item 2: 79% de homens nesta base. Por isso a distribuição por sexo é impressa pelo próprio script de preparação a cada execução, e não apurada uma única vez.
 
-### 5. Viés geográfico entre as três camadas
+### 5. Viés geográfico entre as camadas
 
 | Camada | População de origem |
 |---|---|
 | Numérica | EUA e Europa (Cleveland, Hungria, Suíça, VA Long Beach) |
-| Textual | Brasil (SciELO/UFMG e Ministério da Saúde) |
-| Visual | **Paquistão** — centro único (Ch. Pervaiz Elahi Institute of Cardiology, Multan) |
+| Textual | Brasil (SciELO/UFMG e Ministério da Saúde) e panorama global (OPAS/OMS) |
+| Visual (rotulada) | **Paquistão** — centro único (Ch. Pervaiz Elahi Institute of Cardiology, Multan) |
+| Visual (sinal bruto) | EUA e Alemanha (MIT-BIH e PTB, via PhysioNet) — poucos pacientes, sem rótulo |
 
 Equipamento, protocolo de aquisição e perfil de paciente diferem entre as três. Além disso, o corpus visual vem de **um único centro**: o modelo pode aprender a assinatura do aparelho daquele hospital em vez da patologia. **Nenhum modelo treinado sobre estes dados pode ser apresentado como validado para a população brasileira sem recalibração em dados locais** — e a validação externa em outro centro é requisito, não refinamento.
 
-### 6. LGPD, explicabilidade e ciclo de vida
+### 6. Viés herdado do corpus textual: atribuição de risco por raça
+
+A ampliação do corpus para quatro documentos trouxe um problema que os dois primeiros não tinham. O texto do Ministério da Saúde sobre hipertensão ([`docs/texto4-ms-hipertensao.txt`](docs/texto4-ms-hipertensao.txt)) afirma que *"a incidência é maior em pessoas da raça negra"*. A frase **está na fonte oficial e foi preservada** — o corpus reproduz o que a fonte diz, e não cabe ao grupo reescrever documento do MS. Mas registrá-la sem comentário seria repetir exatamente o erro de Obermeyer descrito no item 4.
+
+O problema é que raça é **marcador social, não mecanismo fisiológico**. A maior prevalência de hipertensão na população negra brasileira é real, mas seus determinantes documentados são acesso desigual ao cuidado, racismo estrutural e exposição diferencial a fatores de risco — não predisposição biológica. Um modelo de NLP que absorva a sentença como regra aprende `raça → risco` e passa a estratificar por cor da pele em vez de por pressão arterial, o que em triagem clínica é discriminação automatizada.
+
+Três decisões concretas por causa disso:
+
+1. **Nenhuma variável de raça ou etnia existe na camada numérica.** As 18 colunas de `cardioia_dataset.csv` são fisiológicas, de exame ou de telemetria — a checagem é auditável no dicionário de variáveis acima.
+2. **O corpus textual é insumo de vocabulário e de extração de sintomas, não fonte de regra clínica.** As três técnicas de PLN da Parte 2 operam sobre linguagem; nenhuma delas induz critério diagnóstico a partir de sentenças do corpus.
+3. **Esta ocorrência fica documentada aqui e em [`docs/FONTES.md`](docs/FONTES.md)** para que quem treinar o módulo de NLP na Fase seguinte encontre o aviso antes de treinar, e não depois.
+
+O padrão é o mesmo dos itens 2, 3 e 5: o viés não foi eliminado do dado, foi **encontrado, medido e declarado** — porque foi procurado.
+
+### 7. LGPD, explicabilidade e ciclo de vida
 
 - **LGPD e GDPR** — nenhum dado pessoal identificável foi utilizado. A base clínica já é anonimizada na origem, os identificadores são pseudônimos sequenciais e a telemetria é sintética. Dados de saúde são **dados sensíveis** (art. 5º, II da LGPD): anonimização aqui é requisito legal, não boa prática opcional.
 - **Explicabilidade** — o módulo de diagnóstico deverá expor LIME/SHAP para atribuição de importância nas variáveis e Grad-CAM nas imagens. O paradoxo da explicabilidade é real (os modelos mais precisos tendem a ser os menos interpretáveis), mas em saúde um laudo que ninguém consegue justificar não é utilizável, por mais alta que seja a métrica.
 - **Model drift** — perfil epidemiológico e protocolos clínicos mudam (*data drift* e *concept drift*). Esta base não é definitiva: é ponto de partida versionado e revisitável.
-- **Licenças verificadas nas três camadas** — base numérica sob **ODbL 1.0**, texto técnico sob **CC-BY**, imagens sob **CC-BY 4.0** (rastreada até a fonte primária, já que o mirror não declara nenhuma) e o texto do Ministério da Saúde como conteúdo público federal. Todas conferidas na origem em 20/08/2026, não presumidas. Este repositório redistribui dados de terceiros: verificar licença antes de publicar é obrigação legal, não zelo excessivo.
-- **Rastreabilidade** — origem, licença, data de acesso e transformação de cada base estão registradas neste README, em [`docs/FONTES.md`](docs/FONTES.md), em `data/auditoria_uci.txt` e em `data/inventario_imagens.csv`. Os dois scripts são idempotentes e de semente fixa: qualquer pessoa reproduz os mesmos arquivos. *Garbage in, garbage out* — nenhum modelo das fases seguintes será melhor que a curadoria feita aqui.
+- **Licenças verificadas em todas as camadas** — base numérica sob **ODbL 1.0**, texto técnico sob **CC-BY**, imagens sob **CC-BY 4.0** (rastreada até a fonte primária, já que o mirror não declara nenhuma) os textos do Ministério da Saúde e da OPAS/OMS como conteúdo público institucional e os sinais do PhysioNet sob **ODC-BY**. Todas conferidas na origem, não presumidas. Este repositório redistribui dados de terceiros: verificar licença antes de publicar é obrigação legal, não zelo excessivo.
+- **Rastreabilidade** — origem, licença, data de acesso e transformação de cada base estão registradas neste README, em [`docs/FONTES.md`](docs/FONTES.md), em `data/auditoria_uci.txt` e em `data/inventario_imagens.csv`. Os três scripts são determinísticos — `gerar_dataset.py` por semente fixa, `baixar_imagens.py` e `gerar_tiras_sinais.py` por construção: qualquer pessoa reproduz os mesmos arquivos. *Garbage in, garbage out* — nenhum modelo das fases seguintes será melhor que a curadoria feita aqui.
 
 ---
 
@@ -338,6 +383,7 @@ Equipamento, protocolo de aquisição e perfil de paciente diferem entre as trê
 | Machine Learning | Classificador de risco cardiovascular, avaliado por subgrupo de sexo | `data/cardioia_dataset.csv` |
 | NLP / Chatbot | Extração de sintomas e triagem conversacional em dois registros linguísticos | `docs/*.txt` |
 | Visão Computacional | CNN de apoio ao laudo com Grad-CAM, sobre o split de origem preservado | `assets/ecg/` |
+| Processamento de sinal | Detecção de QRS, medição de intervalos e validação de pipelines sinal→imagem | `assets/ecg_sinais/` + `data/gerar_tiras_sinais.py` |
 | IoT | Ingestão via MQTT (QoS maior ou igual a 1) da telemetria cujo esquema foi definido na Parte 1 | `spo2_pct`, `hrv_sdnn_ms`, `temp_corporal_c` |
 | Agentes e Governança | Orquestração dos módulos com auditoria de viés e explicabilidade contínuas | Esta seção de Governança |
 
@@ -388,11 +434,16 @@ Todas acessadas e verificadas em **20/08/2026**. Detalhamento completo em [`docs
 - **Texto técnico** — Santana Júnior, W. B. *et al.* *Uso da Inteligência Artificial Aplicada ao Eletrocardiograma para Diagnóstico de Disfunção Sistólica Ventricular Esquerda*. Arq. Bras. Cardiol., 122(4):e20240740, 2025. CC-BY. https://doi.org/10.36660/abc.20240740
 - **Texto leigo** — Ministério da Saúde. *Infarto*. Portal gov.br, Saúde de A a Z. https://www.gov.br/saude/pt-br/assuntos/saude-de-a-a-z/i/infarto
 - **Imagens** — Khan, Ali Haider. *ECG Images dataset of Cardiac Patients*. Mendeley Data, 2021. CC-BY 4.0. https://doi.org/10.17632/gwbz3fsgp8.2 — obtidas via mirror https://huggingface.co/datasets/Amarsaish/ecg_images
+- **Texto 3 (OPAS)** — Organização Pan-Americana da Saúde. *Doenças cardiovasculares*. https://www.paho.org/pt/topicos/doencas-cardiovasculares — acessada em 24/08/2026
+- **Texto 4 (hipertensão)** — Ministério da Saúde. *Hipertensão*. Portal gov.br, Saúde de A a Z. https://www.gov.br/saude/pt-br/assuntos/saude-de-a-a-z/h/hipertensao — acessada em 24/08/2026
+- **Sinais de ECG** — Goldberger, A. L. *et al.* *PhysioBank, PhysioToolkit, and PhysioNet*. Circulation, 101(23):e215-e220, 2000; Moody, G. B.; Mark, R. G. *The impact of the MIT-BIH Arrhythmia Database*. IEEE Eng Med Biol, 20(3):45-50, 2001; Bousseljot, R. *et al.* *The PTB Diagnostic ECG Database*. Registros distribuídos com o pacote oficial `wfdb-python` (MIT-LCP): https://github.com/MIT-LCP/wfdb-python — ODC-BY, acessado em 24/08/2026
 - Obermeyer, Z.; Powers, B.; Vogeli, C.; Mullainathan, S. *Dissecting racial bias in an algorithm used to manage the health of populations*. Science, 366(6464):447-453, 2019.
 - Reuters. *Amazon scraps secret AI recruiting tool that showed bias against women*. 10 out. 2018.
 
 ## 🗃 Histórico de lançamentos
 
+* 1.2.0 - 27/08/2026
+    * Ampliação do corpus textual para 4 documentos (OPAS — panorama global das doenças cardiovasculares; Ministério da Saúde — hipertensão) e adição da camada complementar de sinal bruto de ECG (108 tiras renderizadas de registros reais do PhysioNet, com script de reprodução `data/gerar_tiras_sinais.py`). Nova seção de governança sobre o viés de atribuição de risco por raça herdado do corpus textual.
 * 1.1.0 - 22/08/2026
     * Amostras do corpus visual e exames em alta resolução embutidos no README, seção de Modelo de Dados, seção de execução dos scripts e `docs/requirements.txt`.
 * 1.0.0 - 20/08/2026

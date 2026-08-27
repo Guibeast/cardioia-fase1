@@ -73,7 +73,7 @@ Net/OMS, aviso de copyright) e os elementos de navegação. Nada foi reescrito.
 
 Download direto por HTTP das URLs acima em 20/08/2026, extração do texto com
 `html.parser` da biblioteca padrão do Python e gravação em UTF-8 com quebras `\n`.
-Os dois arquivos são recortes literais da fonte — o único processamento foi a remoção
+Os textos 1 e 2 são recortes literais da fonte — o único processamento foi a remoção
 dos blocos declarados acima.
 
 ## Assimetria proposital do corpus
@@ -157,7 +157,7 @@ rebaixa qualquer uma delas da fonte original em uma execução.
 
 ## Viés geográfico declarado
 
-As três camadas do projeto vêm de populações diferentes: base numérica dos EUA e Europa
+As camadas do projeto vêm de populações diferentes: base numérica dos EUA e Europa
 (Cleveland, Hungria, Suíça, VA Long Beach), corpus textual do Brasil (SciELO e Ministério da
 Saúde) e corpus visual do **Paquistão** (centro único, Multan). Equipamento, protocolo de
 aquisição e perfil de paciente diferem entre elas. Nenhum modelo treinado aqui pode ser
@@ -191,3 +191,62 @@ A ODbL exige **atribuição** e que qualquer banco derivado seja compartilhado s
 licença. `data/cardioia_dataset.csv` é banco derivado: a atribuição está no README e nesta
 página, e a redistribuição segue a mesma licença. A auditoria de proveniência em
 `data/auditoria_uci.txt` foi feita sobre a base original do UCI, de acesso irrestrito.
+
+---
+
+## Adições da versão 1.2.0 (27/08/2026)
+
+## `texto3-opas-doencas-cardiovasculares.txt` — saúde pública internacional
+
+| Campo | Valor |
+|---|---|
+| Título | Doenças cardiovasculares (tópicos de saúde) |
+| Fonte | Organização Pan-Americana da Saúde (OPAS/OMS) |
+| URL | https://www.paho.org/pt/topicos/doencas-cardiovasculares |
+| Licença | Conteúdo informativo público da OPAS/OMS |
+| Data de acesso | 24/08/2026 |
+| Extensão | 2.378 caracteres, 329 palavras |
+| Natureza | **Extrato estruturado** do conteúdo da página (fatos e números da fonte, reorganizados em seções), com proveniência declarada no cabeçalho do arquivo |
+
+**Por que este texto.** Único do corpus com recorte epidemiológico **global** (17,9 milhões
+de mortes/ano; 31% dos óbitos mundiais; 85% por infarto e AVC), cobrindo o eixo temático
+de *prevenção* e listando sintomas de infarto e AVC em registro institucional — insumo para
+classificação de tópicos e extração de entidades no módulo de NLP.
+
+## `texto4-ms-hipertensao.txt` — divulgação ao público
+
+| Campo | Valor |
+|---|---|
+| Título | Hipertensão (pressão alta) |
+| Fonte | Ministério da Saúde — portal gov.br, Saúde de A a Z |
+| URL | https://www.gov.br/saude/pt-br/assuntos/saude-de-a-a-z/h/hipertensao |
+| Licença | Conteúdo público federal |
+| Data de acesso | 24/08/2026 |
+| Extensão | 1.919 caracteres, 280 palavras |
+| Natureza | **Extrato estruturado** do conteúdo da página, com proveniência declarada no cabeçalho do arquivo |
+
+> **Aviso de viés — leia antes de treinar sobre este arquivo.** O texto contém a
+> sentença *"a incidência é maior em pessoas da raça negra"*, presente na fonte
+> oficial e preservada aqui sem edição. Raça é marcador social, não mecanismo
+> fisiológico: os determinantes documentados são acesso desigual ao cuidado e
+> exposição diferencial a fatores de risco. Use este arquivo como insumo de
+> vocabulário e extração de sintomas, **nunca como fonte de regra clínica**.
+> Discussão completa na seção 6 de Governança do README.
+
+**Por que este texto.** Cobre a principal **doença crônica de base** do risco cardiovascular
+(388 mortes/dia no Brasil; limiar diagnóstico 140/90 mmHg), no mesmo registro leigo do
+texto 2 — amplia o vocabulário paciente-institucional e o eixo *condição crônica/adesão
+ao tratamento* do corpus.
+
+## Camada de sinal bruto — `assets/ecg_sinais/` (Parte 3, complementar)
+
+| Campo | Valor |
+|---|---|
+| Conteúdo | 108 tiras de ECG (.png), janelas de 10 s sobre grade de papel de ECG |
+| Origem dos sinais | MIT-BIH Arrhythmia DB (reg. 100, 360 Hz), PTB Diagnostic ECG (s0010_re, 12 derivações, 1000 Hz), PhysioNet/CinC Challenge 2015 (a103l) e v102s (250 Hz) |
+| Obtenção | Registros reais distribuídos com o pacote oficial `wfdb-python` (MIT-LCP), pasta `sample-data` — https://github.com/MIT-LCP/wfdb-python |
+| Licença | Open Data (PhysioNet / ODC-BY) |
+| Data de acesso | 24/08/2026 |
+| Reprodução | `data/gerar_tiras_sinais.py` (wfdb + numpy + matplotlib) |
+| Natureza | Sinal fisiológico **real**; a imagem é renderização calibrada (s × mV) feita pelo grupo — pipeline sinal→imagem integral no repositório |
+| Limitação | 4 registros de origem (poucos pacientes), sem rótulo de patologia — uso previsto em processamento de sinal e validação de pipelines, não em treinamento de classificadores |

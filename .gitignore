@@ -12,3 +12,7 @@ __pycache__/
 # Windows / OneDrive
 desktop.ini
 Thumbs.db
+
+# Artefatos de trabalho - NAO publicar
+*.zip
+*.jpeg
