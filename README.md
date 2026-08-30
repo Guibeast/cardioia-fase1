@@ -11,7 +11,7 @@
 ## Grupo AI4Success - Turma TIAOR
 
 ## 👨‍🎓 Integrantes:
-- <a href="https://www.linkedin.com/in/durval-dorta-junior-585311202/">Durval de Oliveira Dorta Junior - RM567007</a>
+- Durval de Oliveira Dorta Junior - RM567007
 - Murilo Ferreira Borges - RM567738
 - Guilherme Cury - RM564011
 - Guilherme da Nobrega Gontijo - RM562211
