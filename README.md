@@ -8,7 +8,7 @@
 
 # CardioIA — Fase 1: Batimentos de Dados
 
-## Grupo AI4Success - Turma TIAOR
+## Grupo AI4Success - Turma 2TIAOR
 
 ## 👨‍🎓 Integrantes:
 - Durval de Oliveira Dorta Junior - RM567007
@@ -38,7 +38,7 @@ Toda a curadoria seguiu os princípios de Governança de Dados e mitigação de 
 - **Repositório GitHub:** [Acessar Repositório](https://github.com/Guibeast/cardioia-fase1)
 - **Conjunto completo dos dados:** [Acessar no Google Drive](https://drive.google.com/drive/folders/1bL0FgLcgQvp6SRSrujSTPqes1hUS-MCY?usp=sharing)
 
-O link do Google Drive abre a pasta pública `CardioIA-Fase1-Dados`, que contém o arquivo `cardioia-fase1-dados.zip` (29,8 MB). Dentro dele, as camadas estão na mesma estrutura deste repositório (`data/`, `docs/`, `assets/`), 30,5 MB descompactados. A pasta está aberta para qualquer pessoa com o link, sem login.
+O link do Google Drive abre a pasta pública `FIAP 2 ANO 1 ENTREGA`, que contém o arquivo `cardioia-fase1-dados.zip` (29,8 MB). Dentro dele, as camadas estão na mesma estrutura deste repositório (`data/`, `docs/`, `assets/`), 30,5 MB descompactados. A pasta está aberta para qualquer pessoa com o link, sem login.
 
 Por redundância, todas as camadas também estão versionadas aqui no próprio repositório, para o caso de indisponibilidade do serviço de nuvem:
 

@@ -2,13 +2,18 @@
 
 ## Parte 2 — corpus textual
 
-Dois documentos em português brasileiro sobre a **mesma doença** (isquemia miocárdica),
-escritos para **públicos opostos**. O contraste entre eles é o objeto de estudo: o mesmo
-conceito clínico aparece como `disfunção sistólica do ventrículo esquerdo` em um texto e
-como `o coração fica fraco` no outro. Um modelo de PLN treinado só no registro técnico
-não entende o paciente; treinado só no registro leigo, não entende o prontuário.
+Quatro documentos em português brasileiro. O eixo do corpus é o par formado pelos dois
+primeiros, que tratam da **mesma doença** (isquemia miocárdica) escritos para **públicos
+opostos**: o mesmo conceito clínico aparece como `disfunção sistólica do ventrículo
+esquerdo` em um texto e como `o coração fica fraco` no outro. Um modelo de PLN treinado
+só no registro técnico não entende o paciente; treinado só no registro leigo, não entende
+o prontuário. Os textos 3 e 4, acrescentados na versão 1.2.0 e documentados na seção
+"Adições da versão 1.2.0" deste arquivo, ampliam o corpus para os eixos de epidemiologia
+global (OPAS/OMS) e de doença crônica de base (hipertensão, Ministério da Saúde).
 
-Ambos são de **acesso aberto**, sem login, e foram baixados na íntegra da fonte primária.
+Os quatro são de **acesso aberto**, sem login. Os textos 1 e 2 foram baixados na íntegra
+da fonte primária e são recortes literais; os textos 3 e 4 são extratos estruturados do
+conteúdo das páginas oficiais, conforme a nota de proveniência da respectiva seção.
 
 ---
 
